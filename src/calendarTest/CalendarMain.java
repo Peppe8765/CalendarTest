@@ -44,7 +44,7 @@ public class CalendarMain {
 		
 		//LocalDate ld = LocalDate.now();
 		LocalDate ld = LocalDate.of(2020, 1, 1);
-		LocalDate ld2 = LocalDate.of(2020, 12, 31);
+		LocalDate ld2 = LocalDate.of(2022, 12, 31);
 		
 		/*
 		Year y = Year.of(2020);
@@ -70,7 +70,16 @@ public class CalendarMain {
 			
 			if(month < local.getMonthValue()) {
 				month = local.getMonthValue();
-				System.out.println("\n   mese   " + month );
+				String monthName = "";
+				try {
+					monthName = switchMonth(month);
+				} catch (Exception e) {
+					
+					e.printStackTrace();
+				}
+				System.out.println("\n   " + monthName );
+				
+				
 			}
 			
 			System.out.print(local.getDayOfMonth() + " ");
@@ -79,6 +88,12 @@ public class CalendarMain {
 				System.out.println("");
 				countDay = 0;
 			}
+			if(month == 12 && local.getDayOfMonth() == 31) {
+				month = 0;
+				System.out.println("");
+			}
+			
+			
 			
 			//System.out.println(local.toString());
 		}
@@ -91,6 +106,69 @@ public class CalendarMain {
 		c.getTime();
 		System.out.println(c.getTime());
 		*/
+	}
+	
+	
+	
+	public static String switchMonth(int i) {
+		
+		
+		switch (i) {
+		case 1: {
+			
+			return "gennaio";
+		}
+		case 2: {
+			
+			return "febbraio";
+		}
+		case 3: {
+			
+			return "marzo";
+		}
+		case 4: {
+			
+			return "aprile";
+		}
+		case 5: {
+			
+			return "maggio";
+		}
+		case 6: {
+			
+			return "giugno";
+		}
+		case 7: {
+			
+			return "luglio";
+		}
+		case 8: {
+			
+			return "agosto";
+		}
+		case 9: {
+			
+			return "settembre";
+		}
+		case 10: {
+			
+			return "ottobre";
+		}
+		case 11: {
+			
+			return "novembre";
+		}
+		case 12: {
+			
+			return "dicembre";
+		}
+		
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + i);
+		}
+		
+		
+		
 	}
 
 }
