@@ -3,13 +3,21 @@ package calendarTest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.temporal.TemporalAmount;
+import java.time.temporal.TemporalUnit;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class CalendarMain {
 	
 	public static void main(String[] args) throws IOException {
-		
+		/*
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		System.out.println (System.currentTimeMillis());
@@ -29,9 +37,60 @@ public class CalendarMain {
 			int a = scanner.nextInt();
 			System.out.println(a);
 		}
+		*/
+		
+		Date d = new Date();
+		System.out.println(d);
+		
+		//LocalDate ld = LocalDate.now();
+		LocalDate ld = LocalDate.of(2020, 1, 1);
+		LocalDate ld2 = LocalDate.of(2020, 12, 31);
+		
+		/*
+		Year y = Year.of(2020);
+		System.out.print(y.getValue());
+		*/
 		
 		
 		
+			Stream<LocalDate> localdate =ld.datesUntil(ld2.plusDays(1));
+			List<LocalDate> al = localdate.toList();
+			System.out.println(al.toString());
+			
+			int year = 0;	
+			int month = 0;
+			
+			int countDay = 0;
+			
+		for(LocalDate local : al) {
+			if(year < local.getYear()) {
+				year = local.getYear();
+				System.out.println("   anno   " + year);
+			}
+			
+			if(month < local.getMonthValue()) {
+				month = local.getMonthValue();
+				System.out.println("\n   mese   " + month );
+			}
+			
+			System.out.print(local.getDayOfMonth() + " ");
+			countDay++;
+			if(countDay == 7) {
+				System.out.println("");
+				countDay = 0;
+			}
+			
+			//System.out.println(local.toString());
+		}
+		
+		//System.out.print(ld);
+		
+		
+		/*
+		Calendar c = Calendar.getInstance();
+		c.getTime();
+		System.out.println(c.getTime());
+		*/
 	}
 
 }
